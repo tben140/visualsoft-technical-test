@@ -1,0 +1,87 @@
+{% comment %}
+    This is the sale banner countdown section.
+    It displays a banner with a countdown timer.
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Sale Banner Countdown",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "Final Days of our <strong>Summer Sale.</strong> <strong>Save up to 30%</strong> on selected items."
+    },
+    {
+      "type": "number",
+      "id": "countdown_time",
+      "label": "Countdown Time (Unix Timestamp)",
+      "default": 1752183966
+    },
+    {
+      "type": "text",
+      "id": "banner_button_text",
+      "label": "Banner Button Text",
+      "default": "Shop the Sale"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_link",
+      "label": "Banner Button Link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sale Banner Countdown",
+      "category": "Banners"
+    }
+  ]
+}
+{% endschema %}
+
+<link rel="stylesheet" href="{{ 'banner.css' | asset_url }}" type="text/css">
+<script src="{{ 'banner.js' | asset_url }}" type="text/javascript"></script>
+
+
+<div class="custom-banner">
+    <img class="custom-banner-image" src="{{ 'banner-image.png' | asset_url }}" alt="Banner" width="1600" height="159" />
+    <div class="banner-content">
+        <div class="banner-text">
+            <h3 class="banner-text-title">{{ section.settings.banner_text }}</h3>
+        </div>
+        <div class="banner-button">
+            <a href="{{ section.settings.banner_button_link }}" class="banner-button-link">
+             {{ section.settings.banner_button_text }}
+            </a>
+        </div>
+        <div class="banner-countdown">
+            
+            <div class="banner-countdown-icon">
+                <img src="{{ 'CalIcon.svg' | asset_url }}" alt="Calender" width="34" height="34">
+            </div>
+            <div class="banner-countdown-timer" countdown={{ section.settings.countdown_time }}>
+                <span class="banner-countdown-timer-item">
+                    <span class="banner-countdown-timer-item-value">00</span>
+                    <span class="banner-countdown-timer-item-label"> days</span>
+                    <span class="banner-countdown-timer-item-separator"> : </span>
+                </span>
+                <span class="banner-countdown-timer-item">
+                    <span class="banner-countdown-timer-item-value">00</span>
+                    <span class="banner-countdown-timer-item-label"> hours</span>
+                    <span class="banner-countdown-timer-item-separator"> : </span>
+                </span>
+                <span class="banner-countdown-timer-item">
+                    <span class="banner-countdown-timer-item-value">00</span>
+                    <span class="banner-countdown-timer-item-label"> mins</span>
+                    <span class="banner-countdown-timer-item-separator"> : </span>
+                </span>
+                <span class="banner-countdown-timer-item">
+                    <span class="banner-countdown-timer-item-value">00</span>
+                        <span class="banner-countdown-timer-item-label"> secs</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
